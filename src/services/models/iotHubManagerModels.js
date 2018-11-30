@@ -192,8 +192,8 @@ export const toDeploymentModel = (deployment = {}) => {
     'createdDateTimeUtc': 'createdDateTimeUtc',
     'metrics.systemMetrics.appliedCount': 'appliedCount',
     'metrics.systemMetrics.failedCount': 'failedCount',
-    'metrics.systemMetrics.succeededCount': 'succeededCount',
-    'metrics.systemMetrics.targetedCount': 'targetedCount',
+    'metrics.systemMetrics.reportedSuccessfulCount': 'succeededCount',
+    'metrics.systemMetrics.reportedFailedCount': 'targetedCount',
     'metrics.systemMetrics.pendingCount': 'pendingCount'
   });
   return update(modelData, {
