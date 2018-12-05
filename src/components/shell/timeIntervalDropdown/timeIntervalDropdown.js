@@ -6,7 +6,7 @@ import { Select } from 'components/shared';
 import { isFunc } from 'utilities';
 import { toDiagnosticsModel } from 'services/models';
 
-import './timeIntervalDropdown.css';
+import './timeIntervalDropdown.scss';
 
 const optionValues = [
   { value: 'PT1H' },

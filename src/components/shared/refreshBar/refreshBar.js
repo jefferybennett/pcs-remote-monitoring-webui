@@ -7,7 +7,7 @@ import { toDiagnosticsModel } from 'services/models';
 import { svgs } from 'utilities';
 import { DEFAULT_TIME_FORMAT } from 'components/shared/pcsGrid/pcsGridConfig';
 
-import './refreshBar.css';
+import './refreshBar.scss';
 
 export class RefreshBar extends Component {
 

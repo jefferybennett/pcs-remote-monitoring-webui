@@ -32,7 +32,7 @@ import {
   RefreshBarContainer as RefreshBar
 } from 'components/shared';
 
-import './dashboard.css';
+import './dashboard.scss';
 
 const initialState = {
   // Telemetry data

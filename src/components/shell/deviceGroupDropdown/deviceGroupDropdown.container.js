@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft. All rights reserved.
 
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
-import { redux as appRedux, getDeviceGroups, getActiveDeviceGroupId, epics as appEpics } from 'store/reducers/appReducer';
+import { withNamespaces } from 'react-i18next';
+import { redux as appRedux, epics as appEpics, getDeviceGroups, getActiveDeviceGroupId } from 'store/reducers/appReducer';
 
 import { DeviceGroupDropdown } from './deviceGroupDropdown';
 
@@ -17,4 +17,4 @@ const mapDispatchToProps = dispatch => ({
   logEvent: diagnosticsModel => dispatch(appEpics.actions.logEvent(diagnosticsModel))
 });
 
-export const DeviceGroupDropdownContainer = translate()(connect(mapStateToProps, mapDispatchToProps)(DeviceGroupDropdown));
+export const DeviceGroupDropdownContainer = withNamespaces()(connect(mapStateToProps, mapDispatchToProps)(DeviceGroupDropdown));

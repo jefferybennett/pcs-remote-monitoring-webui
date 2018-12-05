@@ -9,7 +9,7 @@ import { toDiagnosticsModel } from 'services/models';
 import { isFunc, svgs } from 'utilities';
 import ProfileImagePath from 'assets/images/profile.png';
 
-import './header.css';
+import './header.scss';
 
 const docsDropdown = 'docsDropdown';
 

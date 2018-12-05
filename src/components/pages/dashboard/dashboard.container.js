@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft. All rights reserved.
 
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import {
   epics as appEpics,
   redux as appRedux,
@@ -57,4 +57,4 @@ const mapDispatchToProps = dispatch => ({
   logEvent: diagnosticsModel => dispatch(appEpics.actions.logEvent(diagnosticsModel))
 });
 
-export const DashboardContainer = translate()(connect(mapStateToProps, mapDispatchToProps)(Dashboard));
+export const DashboardContainer = withNamespaces()(connect(mapStateToProps, mapDispatchToProps)(Dashboard));

@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { Select } from 'components/shared';
 import { toDiagnosticsModel } from 'services/models';
 
-import './deviceGroupDropdown.css';
+import './deviceGroupDropdown.scss';
 
 export class DeviceGroupDropdown extends Component {
 

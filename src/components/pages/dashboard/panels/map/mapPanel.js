@@ -17,7 +17,7 @@ import { DeviceDetailsContainer } from 'components/pages/devices/flyouts/deviceD
 import { toDiagnosticsModel } from 'services/models';
 import { AzureMap } from './azureMap';
 
-import './mapPanel.css';
+import './mapPanel.scss';
 
 const AzureMaps = window.atlas;
 const nominalDeviceLayer = 'devices-nominal-layer';

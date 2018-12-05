@@ -16,7 +16,7 @@ import {
 
 import { TelemetryChartContainer as TelemetryChart } from './telemetryChart.container';
 
-import './telemetryPanel.css';
+import './telemetryPanel.scss';
 
 export class TelemetryPanel extends Component {
   render() {

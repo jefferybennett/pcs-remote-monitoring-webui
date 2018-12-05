@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft. All rights reserved.
 
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { redux as appRedux, epics as appEpics } from 'store/reducers/appReducer';
 
 import { ManageDeviceGroupsBtn } from './manageDeviceGroupsBtn';
@@ -11,4 +11,4 @@ const mapDispatchToProps = dispatch => ({
   logEvent: diagnosticsModel => dispatch(appEpics.actions.logEvent(diagnosticsModel))
 });
 
-export const ManageDeviceGroupsBtnContainer = translate()(connect(null, mapDispatchToProps)(ManageDeviceGroupsBtn));
+export const ManageDeviceGroupsBtnContainer = withNamespaces()(connect(null, mapDispatchToProps)(ManageDeviceGroupsBtn));

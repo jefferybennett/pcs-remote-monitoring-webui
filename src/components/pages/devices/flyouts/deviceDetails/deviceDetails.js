@@ -34,7 +34,7 @@ import { TelemetryChartContainer as TelemetryChart , chartColorObjects } from 'c
 import { transformTelemetryResponse } from 'components/pages/dashboard/panels';
 import { getEdgeAgentStatusCode } from 'utilities';
 
-import './deviceDetails.css';
+import './deviceDetails.scss';
 
 const Section = Flyout.Section;
 
@@ -226,7 +226,7 @@ export class DeviceDetails extends Component {
       rowData: isPending ? undefined : this.applyRuleNames(this.state.alerts || [], this.props.rules || []),
       t: this.props.t,
       deviceGroups: this.props.deviceGroups,
-      domLayout: 'autoHeight',
+      gridAutoHeight: true,
       columnDefs: translateColumnDefs(this.props.t, this.columnDefs),
       suppressFlyouts: true
     };
