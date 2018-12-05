@@ -13,11 +13,9 @@ import {
   PanelOverlay
 } from 'components/pages/dashboard/panel';
 import { RulesGrid, rulesColumnDefs } from 'components/pages/rules/rulesGrid';
-import { translateColumnDefs } from 'utilities';
+import { LinkRenderer } from 'components/shared/cellRenderers';
 import { toDiagnosticsModel } from 'services/models';
-import {
-  LinkRenderer
-} from 'components/shared/cellRenderers';
+import { translateColumnDefs } from 'utilities';
 
 export class AlertsPanel extends Component {
 

@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 import { Breadcrumbs } from './breadcrumbs';
 import { Svg } from 'components/shared';
@@ -93,13 +92,14 @@ export class Header extends Component {
               <div className="menu">
                 {
                   docLinks.map(({ url, translationId, eventName }) =>
-                    <Link key={translationId}
+                    <a key={translationId}
                       className="menu-item"
                       target="_blank"
-                      to={url}
-                      onClick={this.logLinkClick(eventName)}>
+                      href={url}
+                      onClick={this.logLinkClick(eventName)}
+                      rel="noopener noreferrer">
                       { this.props.t(translationId) }
-                    </Link>
+                    </a>
                   )
                 }
               </div>
