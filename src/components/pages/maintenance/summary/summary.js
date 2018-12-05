@@ -15,7 +15,7 @@ import {
   ComponentArray,
   ContextMenu,
   ContextMenuAlign,
-  RefreshBar,
+  RefreshBarContainer as RefreshBar,
   PageContent,
   PageTitle,
   Protected,

@@ -15,7 +15,7 @@ import {
   PageContent,
   PageTitle,
   Protected,
-  RefreshBar,
+  RefreshBarContainer as RefreshBar,
   SearchInput
 } from 'components/shared';
 import { NewRuleFlyout } from './flyouts';

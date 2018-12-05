@@ -10,7 +10,7 @@ import {
   ContextMenuAlign,
   PageContent,
   PageTitle,
-  RefreshBar
+  RefreshBarContainer as RefreshBar
 } from 'components/shared';
 import { DevicesGrid } from 'components/pages/devices/devicesGrid';
 import { JobGrid, JobStatusGrid } from 'components/pages/maintenance/grids';

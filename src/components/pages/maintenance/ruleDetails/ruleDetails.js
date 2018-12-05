@@ -17,7 +17,7 @@ import {
   PageContent,
   PageTitle,
   Protected,
-  RefreshBar
+  RefreshBarContainer as RefreshBar
 } from 'components/shared';
 import { svgs, joinClasses, renderUndefined } from 'utilities';
 import { DevicesGrid } from 'components/pages/devices/devicesGrid';

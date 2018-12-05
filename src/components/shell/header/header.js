@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { Breadcrumbs } from './breadcrumbs';
 import { Svg } from 'components/shared';
+import { toDiagnosticsModel } from 'services/models';
 import { isFunc, svgs } from 'utilities';
 import ProfileImagePath from 'assets/images/profile.png';
 
@@ -27,20 +28,23 @@ const parentHasClass = (element, ...searchClasses) => {
 const docLinks = [
   {
     translationId: 'header.getStarted',
-    url: 'https://docs.microsoft.com/en-us/azure/iot-suite/iot-suite-remote-monitoring-monitor'
+    url: 'https://docs.microsoft.com/en-us/azure/iot-suite/iot-suite-remote-monitoring-monitor',
+    eventName: 'Help_GetStartedClick'
   },
   {
     translationId: 'header.documentation',
-    url: 'https://docs.microsoft.com/en-us/azure/iot-suite'
+    url: 'https://docs.microsoft.com/en-us/azure/iot-suite',
+    eventName: 'Help_DocumentationClick'
   },
   {
     translationId: 'header.sendSuggestion',
-    url: 'https://feedback.azure.com/forums/916438-azure-iot-solution-accelerators'
+    url: 'https://feedback.azure.com/forums/916438-azure-iot-solution-accelerators',
+    eventName: 'Help_SuggestionClick'
   }
 ];
 
 /** The header component for the top of the page */
-class Header extends Component {
+export class Header extends Component {
 
   constructor(props) {
     super(props);
@@ -63,7 +67,14 @@ class Header extends Component {
     }
   }
 
-  toggleDropdown = (openDropdown) => () => this.setState({ openDropdown });
+  toggleDropdown = (openDropdown) => () => {
+    this.props.logEvent(toDiagnosticsModel('Help_Click', {}));
+    this.setState({ openDropdown });
+  }
+
+  logLinkClick = (eventName) => () => {
+    this.props.logEvent(toDiagnosticsModel(eventName, {}));
+  }
 
   render() {
     return (
@@ -81,11 +92,12 @@ class Header extends Component {
               this.state.openDropdown === docsDropdown &&
               <div className="menu">
                 {
-                  docLinks.map(({ url, translationId }) =>
+                  docLinks.map(({ url, translationId, eventName }) =>
                     <Link key={translationId}
                       className="menu-item"
                       target="_blank"
-                      to={url}>
+                      to={url}
+                      onClick={this.logLinkClick(eventName)}>
                       { this.props.t(translationId) }
                     </Link>
                   )
@@ -109,6 +121,4 @@ class Header extends Component {
       </header>
     );
   }
-};
-
-export default Header;
+}

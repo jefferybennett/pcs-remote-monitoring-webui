@@ -29,7 +29,7 @@ import {
   ContextMenuAlign,
   PageContent,
   Protected,
-  RefreshBar
+  RefreshBarContainer as RefreshBar
 } from 'components/shared';
 
 import './dashboard.css';
