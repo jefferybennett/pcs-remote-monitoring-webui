@@ -14,6 +14,10 @@ import {
 } from 'components/pages/dashboard/panel';
 import { RulesGrid, rulesColumnDefs } from 'components/pages/rules/rulesGrid';
 import { translateColumnDefs } from 'utilities';
+import { toDiagnosticsModel } from 'services/models';
+import {
+  LinkRenderer
+} from 'components/shared/cellRenderers';
 
 export class AlertsPanel extends Component {
 
@@ -31,8 +35,15 @@ export class AlertsPanel extends Component {
         headerName: 'rules.grid.count',
         field: 'count'
       },
-      rulesColumnDefs.explore
+      {
+        ...rulesColumnDefs.explore,
+        cellRendererFramework: props => <LinkRenderer {...props} to={`/maintenance/rule/${props.value}`} onLinkClick={this.logExploreClick} />
+      }
     ];
+  }
+
+  logExploreClick = () => {
+    this.props.logEvent(toDiagnosticsModel('AlertsPanel_ExploreClick', {}));
   }
 
   render() {

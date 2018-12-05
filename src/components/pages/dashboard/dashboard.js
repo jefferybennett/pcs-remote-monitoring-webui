@@ -15,7 +15,7 @@ import { ManageDeviceGroupsBtnContainer as ManageDeviceGroupsBtn } from 'compone
 import { TimeIntervalDropdownContainer as TimeIntervalDropdown } from 'components/shell/timeIntervalDropdown';
 import {
   OverviewPanel,
-  AlertsPanel,
+  AlertsPanelContainer as AlertsPanel,
   TelemetryPanel,
   AnalyticsPanel,
   MapPanel,
