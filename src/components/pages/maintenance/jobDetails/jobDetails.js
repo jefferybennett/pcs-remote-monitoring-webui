@@ -14,7 +14,7 @@ import {
 } from 'components/shared';
 import { DevicesGrid } from 'components/pages/devices/devicesGrid';
 import { JobGrid, JobStatusGrid } from 'components/pages/maintenance/grids';
-import { TimeIntervalDropdown } from 'components/shell/timeIntervalDropdown';
+import { TimeIntervalDropdownContainer as TimeIntervalDropdown } from 'components/shell/timeIntervalDropdown';
 
 import { IoTHubManagerService } from 'services';
 

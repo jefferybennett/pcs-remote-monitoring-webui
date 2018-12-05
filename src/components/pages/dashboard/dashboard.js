@@ -6,13 +6,13 @@ import moment from 'moment';
 
 import Config from 'app.config';
 import { TelemetryService } from 'services';
-import { permissions } from 'services/models';
+import { permissions, toDiagnosticsModel } from 'services/models';
 import { compareByProperty, getIntervalParams, retryHandler } from 'utilities';
 import { Grid, Cell } from './grid';
 import { PanelErrorBoundary } from './panel';
 import { DeviceGroupDropdownContainer as DeviceGroupDropdown } from 'components/shell/deviceGroupDropdown';
 import { ManageDeviceGroupsBtnContainer as ManageDeviceGroupsBtn } from 'components/shell/manageDeviceGroupsBtn';
-import { TimeIntervalDropdown } from 'components/shell/timeIntervalDropdown';
+import { TimeIntervalDropdownContainer as TimeIntervalDropdown } from 'components/shell/timeIntervalDropdown';
 import {
   OverviewPanel,
   AlertsPanel,
@@ -76,6 +76,7 @@ export class Dashboard extends Component {
     this.panelsRefresh$ = new Subject();
 
     this.props.updateCurrentWindow('Dashboard');
+    this.props.logEvent(toDiagnosticsModel('DashboardPage_Click', {}));
   }
 
   componentDidMount() {

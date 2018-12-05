@@ -3,12 +3,14 @@
 import React, { Component } from 'react';
 
 import { Select } from 'components/shared';
+import { toDiagnosticsModel } from 'services/models';
 
 import './deviceGroupDropdown.css';
 
 export class DeviceGroupDropdown extends Component {
 
   onChange = (deviceGroupIds) => ({ target: { value: { value } = {} } = {} }) => {
+    this.props.logEvent(toDiagnosticsModel('DeviceGroupFilter_Selected', {}));
     // Don't try to update the device group if the device id doesn't exist
     if (deviceGroupIds.indexOf(value) > -1) {
       this.props.changeDeviceGroup(value);

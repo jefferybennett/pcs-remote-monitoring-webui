@@ -3,6 +3,7 @@
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import {
+  epics as appEpics,
   redux as appRedux,
   getActiveDeviceGroup,
   getAzureMapsKey,
@@ -52,7 +53,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   fetchRules: () => dispatch(rulesEpics.actions.fetchRules()),
   updateTimeInterval: timeInterval => dispatch(appRedux.actions.updateTimeInterval(timeInterval)),
-  updateCurrentWindow: (currentWindow) => dispatch(appRedux.actions.updateCurrentWindow(currentWindow))
+  updateCurrentWindow: (currentWindow) => dispatch(appRedux.actions.updateCurrentWindow(currentWindow)),
+  logEvent: diagnosticsModel => dispatch(appEpics.actions.logEvent(diagnosticsModel))
 });
 
 export const DashboardContainer = translate()(connect(mapStateToProps, mapDispatchToProps)(Dashboard));
