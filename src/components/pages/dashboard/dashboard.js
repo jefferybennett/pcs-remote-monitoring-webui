@@ -15,7 +15,7 @@ import { ManageDeviceGroupsBtnContainer as ManageDeviceGroupsBtn } from 'compone
 import { TimeIntervalDropdownContainer as TimeIntervalDropdown } from 'components/shell/timeIntervalDropdown';
 import {
   OverviewPanel,
-  AlertsPanelContainer as AlertsPanel,
+  AlertsPanel,
   TelemetryPanel,
   AnalyticsPanel,
   MapPanel,
@@ -294,7 +294,8 @@ export class Dashboard extends Component {
       rules,
       rulesError,
       rulesIsPending,
-      t
+      t,
+      logEvent
     } = this.props;
     const {
       telemetry,
@@ -401,7 +402,8 @@ export class Dashboard extends Component {
                   mapKeyIsPending={azureMapsKeyIsPending}
                   isPending={devicesIsPending || analyticsIsPending}
                   error={azureMapsKeyError || devicesError || analyticsError}
-                  t={t} />
+                  t={t}
+                  logEvent = {logEvent} />
               </PanelErrorBoundary>
             </Cell>
             <Cell className="col-3">
@@ -410,7 +412,8 @@ export class Dashboard extends Component {
                 isPending={analyticsIsPending || rulesIsPending}
                 error={rulesError || analyticsError}
                 t={t}
-                deviceGroups={deviceGroups} />
+                deviceGroups={deviceGroups}
+                logEvent = {logEvent} />
             </Cell>
             <Cell className="col-6">
               <TelemetryPanel
