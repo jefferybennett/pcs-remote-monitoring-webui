@@ -12,11 +12,12 @@ import {
   PageTitle,
   RefreshBar
 } from 'components/shared';
-import { DevicesGrid } from 'components/pages/devices/devicesGrid';
+import { DevicesGridContainer } from 'components/pages/devices/devicesGrid/devicesGrid.container';
 import { JobGrid, JobStatusGrid } from 'components/pages/maintenance/grids';
 import { TimeIntervalDropdown } from 'components/shell/timeIntervalDropdown';
 
 import { IoTHubManagerService } from 'services';
+import { toDiagnosticsModel } from 'services/models';
 
 export class JobDetails extends Component {
 
@@ -37,6 +38,9 @@ export class JobDetails extends Component {
   componentDidMount() {
     this.handleNewProps(this.props);
     this.clearSubscription();
+
+    console.log("saki:jobDetails:componentDidMount:JobDetails_Click");
+    this.props.logEvent(toDiagnosticsModel('JobDetails_Click', {}));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -106,7 +110,8 @@ export class JobDetails extends Component {
       gridAutoHeight: true,
       rowData: isPending ? undefined : selectedJob ? [selectedJob] : [],
       pagination: false,
-      t
+      t,
+      onColumnMoved: this.props.onColumnMoved
     };
 
     const jobStatusGridProps = {
@@ -114,9 +119,14 @@ export class JobDetails extends Component {
       rowData: this.state.jobStatusIsPending ? undefined : [this.state.jobStatus],
       pagination: true,
       paginationPageSize: Config.smallGridPageSize,
-      onRowClicked: ({ data: { devices } }) => this.setState({
-        selectedDevices: devices.map(({ deviceId }) => deviceEntities[deviceId])
-      }),
+      onRowClicked: ({ data: { devices } }) => {
+          this.setState({
+          selectedDevices: devices.map(({ deviceId }) => deviceEntities[deviceId])
+        });
+
+        console.log("saki:jobDetails:Job_Click");
+        this.props.logEvent(toDiagnosticsModel('Job_Click', {}));
+      },
       t
     };
 
@@ -149,7 +159,7 @@ export class JobDetails extends Component {
                 {
                   this.state.selectedDevices
                     ?
-                    <DevicesGrid
+                    <DevicesGridContainer
                       t={t}
                       gridAutoHeight={true}
                       rowData={this.state.selectedDevices}

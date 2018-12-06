@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 
 import { permissions, toDiagnosticsModel } from 'services/models';
-import { DevicesGrid } from './devicesGrid';
+import { DevicesGridContainer } from './devicesGrid';
 import { DeviceGroupDropdownContainer as DeviceGroupDropdown } from 'components/shell/deviceGroupDropdown';
 import { ManageDeviceGroupsBtnContainer as ManageDeviceGroupsBtn } from 'components/shell/manageDeviceGroupsBtn';
 import {
@@ -45,6 +45,11 @@ export class Devices extends Component {
     }
   }
 
+  componentDidMount() {
+    console.log("saki:devices:componentDidMount:DevicesPage_Click");
+    this.props.logEvent(toDiagnosticsModel('DevicesPage_Click', {}));
+  }
+
   closeFlyout = () => this.setState(closedFlyoutState);
 
   openSIMManagement = () => this.setState({ openFlyoutName: 'sim-management' });
@@ -62,6 +67,14 @@ export class Devices extends Component {
 
   searchOnChange = ({ target: { value } }) => {
     if (this.deviceGridApi) this.deviceGridApi.setQuickFilter(value);
+  };
+
+  /**
+   * Handles a click event on a device search.
+   */
+  searchOnClick = ({ target: { value } }) => {
+    console.log("saki:devices:searchOnClick:Devices_Search");
+    this.props.logEvent(toDiagnosticsModel('Devices_Search', {}));
   };
 
   render() {
@@ -87,7 +100,7 @@ export class Devices extends Component {
             </Protected>
           </ContextMenuAlign>
           <ContextMenuAlign>
-            <SearchInput onChange={this.searchOnChange} placeholder={t('devices.searchPlaceholder')} />
+            <SearchInput onChange={this.searchOnChange} onClick={this.searchOnClick} placeholder={t('devices.searchPlaceholder')} />
             {this.state.contextBtns}
             <Protected permission={permissions.updateSIMManagement}>
               <Btn svg={svgs.simmanagement} onClick={this.openSIMManagement}>{t('devices.flyouts.SIMManagement.title')}</Btn>
@@ -101,7 +114,7 @@ export class Devices extends Component {
           <RefreshBar refresh={fetchDevices} time={lastUpdated} isPending={isPending} t={t} />
           <PageTitle titleValue={t('devices.title')} />
           {!!error && <AjaxError t={t} error={error} />}
-          {!error && <DevicesGrid {...gridProps} />}
+          {!error && <DevicesGridContainer {...gridProps} />}
           {newDeviceFlyoutOpen && <DeviceNewContainer onClose={this.closeFlyout} />}
           {simManagementFlyoutOpen && <SIMManagementContainer onClose={this.closeFlyout} />}
         </PageContent>
