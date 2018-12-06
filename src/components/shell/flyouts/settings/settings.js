@@ -6,7 +6,8 @@ import Config from 'app.config';
 import Flyout from 'components/shared/flyout';
 import { Btn, Indicator, ToggleBtn } from 'components/shared';
 import { svgs, LinkedComponent, isDef } from 'utilities';
-import ApplicationSettings from './applicationSettings';
+import { ApplicationSettingsContainer } from './applicationSettings.container';
+import { toDiagnosticsModel, toSinglePropertyDiagnosticsModel } from 'services/models';
 
 import './settings.css';
 
@@ -69,26 +70,52 @@ export class Settings extends LinkedComponent {
     }
   }
 
+  componentDidMount() {
+    console.log("saki:settings:componentDidMount:SettingsFlyout_Open");
+    this.props.logEvent(toDiagnosticsModel('SettingsFlyout_Open', {}));
+  }
+
   onChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
   };
 
   onSimulationChange = ({ target }) => {
+    const { toggledSimulation } = this.state;
     const { name, value } = target;
     const etag = this.props.simulationEtag;
     this.setState({
       toggledSimulation: true,
       [name]: value
+    },
+    () => {
+      console.log("saki:settings:onSimulationChange:" + toggledSimulation);
+      this.props.logEvent(toSinglePropertyDiagnosticsModel('Settings_SimulationToggle', 'isEnabled', toggledSimulation));
     });
     this.props.toggleSimulationStatus(etag, value);
+  }
+
+  onThemeChange = (nextTheme) => {
+    this.props.changeTheme(nextTheme);
+    console.log("saki:settings:onThemeChange:Settings_ThemeChanged");
+    this.props.logEvent(toDiagnosticsModel('Settings_ThemeChanged', {}));
+  }
+
+  onFlyoutClose = (eventName) => {
+    console.log("saki:settings:onFlyoutClose:" + eventName);
+    this.props.logEvent(toDiagnosticsModel(eventName, {}));
+    this.props.onClose();
   }
 
   toggleDiagnostics = () => {
     const { diagnosticsOptIn } = this.state;
     this.setState(
       { diagnosticsOptIn: !diagnosticsOptIn },
-      () => this.props.updateDiagnosticsOptIn(!diagnosticsOptIn)
+      () => {
+        this.props.updateDiagnosticsOptIn(!diagnosticsOptIn)
+        console.log("saki:settings:toggleDiagnostics:" + diagnosticsOptIn);
+        this.props.logEvent(toSinglePropertyDiagnosticsModel('Settings_DiagnosticsToggle', 'isEnabled', diagnosticsOptIn));
+      }
     );
   }
 
@@ -116,6 +143,8 @@ export class Settings extends LinkedComponent {
     this.setState({
       logoFile: file
     });
+    console.log("saki:settings:onUpload:Settings_LogoUpdated");
+    this.props.logEvent(toDiagnosticsModel('Settings_LogoUpdated', {}));
   };
 
   render() {
@@ -123,7 +152,6 @@ export class Settings extends LinkedComponent {
       t,
       onClose,
       theme,
-      changeTheme,
       version,
       releaseNotesUrl,
       isSimulationEnabled,
@@ -157,7 +185,7 @@ export class Settings extends LinkedComponent {
         <Flyout.Container>
           <Flyout.Header>
             <Flyout.Title>{t('settingsFlyout.title')}</Flyout.Title>
-            <Flyout.CloseBtn onClick={onClose} />
+            <Flyout.CloseBtn onClick={this.onFlyoutClose.bind(this, 'Settings_TopXCloseClick')} />
           </Flyout.Header>
           <Flyout.Content className="settings-workflow-container">
             <Section.Container collapsable={false}>
@@ -218,12 +246,12 @@ export class Settings extends LinkedComponent {
               <Section.Header>{t('settingsFlyout.theme')}</Section.Header>
               <Section.Content>
                 {t('settingsFlyout.changeTheme')}
-                <button onClick={() => changeTheme(nextTheme)} className="toggle-theme-btn">
+                <button onClick={this.onThemeChange.bind(this, nextTheme)} className="toggle-theme-btn">
                   {t('settingsFlyout.switchTheme', { nextTheme })}
                 </button>
               </Section.Content>
             </Section.Container>
-            <ApplicationSettings
+            <ApplicationSettingsContainer
               onUpload={this.onUpload}
               applicationNameLink={this.applicationName}
               {...this.props} />
@@ -242,9 +270,9 @@ export class Settings extends LinkedComponent {
             <div className="btn-container">
               {
                 !loading && hasChanged &&
-                <Btn type="submit" className="apply-button">{t('settingsFlyout.apply')}</Btn>
+                <Btn type="submit" onClick={this.onFlyoutClose.bind(this, 'Settings_ApplyClick')} className="apply-button">{t('settingsFlyout.apply')}</Btn>
               }
-              <Btn svg={svgs.x} onClick={onClose} className="close-button">
+              <Btn svg={svgs.x} onClick={this.onFlyoutClose.bind(this, 'Settings_CloseClick')} className="close-button">
                 {hasChanged ? t('settingsFlyout.cancel') : t('settingsFlyout.close')}</Btn>
               {loading && <Indicator size='small' />}
             </div>

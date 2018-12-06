@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import update from 'immutability-helper';
 
 import { IoTHubManagerService } from 'services';
-import { toSubmitTagsJobRequestModel } from 'services/models';
+import { toSubmitTagsJobRequestModel, toDiagnosticsModel } from 'services/models';
 import { LinkedComponent } from 'utilities';
 import { svgs, Validator } from 'utilities';
 import {
@@ -140,6 +140,9 @@ export class DeviceJobTags extends LinkedComponent {
         isPending: true,
         updatedTags: this.state.commonTags.filter(({ value }) => value !== tagJobConstants.multipleValues)
       });
+
+      console.log("saki:deviceJobTags:apply");
+      this.props.logEvent(toDiagnosticsModel('Devices_NewJob_Apply_Click', {}));
 
       const { devices } = this.props;
       const { commonTags, deletedTags } = this.state;
