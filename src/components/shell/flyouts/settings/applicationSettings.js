@@ -32,7 +32,6 @@ export class ApplicationSettings extends Component {
   renderSvgLogo = (logo) => <Svg path={logo} className="logo-svg" />;
 
   onApplicationNameInputClick = () => {
-    console.log("saki:applicationSettings:onApplicationNameInputClick:Settings_NameUpdated");
     this.props.logEvent(toDiagnosticsModel('Settings_NameUpdated', {}));
   }
 

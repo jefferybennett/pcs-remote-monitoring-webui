@@ -151,8 +151,6 @@ export class Maintenance extends Component {
     if (!devicesIsPending && deviceLastUpdated) {
       this.getData(deviceEntities);
     }
-
-    console.log("saki:maintenance:componentDidMount:MaintenancePage_Click");
     this.props.logEvent(toDiagnosticsModel('MaintenancePage_Click', {}));
   }
 
@@ -187,12 +185,10 @@ export class Maintenance extends Component {
 
   onTimeIntervalChange = (timeInterval) => {
     this.props.updateTimeInterval(timeInterval);
-    console.log("saki:maintenance:onTimeIntervalChange:TimeFilter_Selected");
     this.props.logEvent(toDiagnosticsModel('TimeFilter_Selected', {}));
   }
 
   onColumnMoved = (eventName) => {
-    console.log("saki:maintenance:onColumnMoved:" + eventName);
     this.props.logEvent(toDiagnosticsModel(eventName, {}));
   }
 

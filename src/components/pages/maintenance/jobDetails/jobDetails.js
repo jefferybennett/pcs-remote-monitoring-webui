@@ -38,8 +38,6 @@ export class JobDetails extends Component {
   componentDidMount() {
     this.handleNewProps(this.props);
     this.clearSubscription();
-
-    console.log("saki:jobDetails:componentDidMount:JobDetails_Click");
     this.props.logEvent(toDiagnosticsModel('JobDetails_Click', {}));
   }
 
@@ -123,8 +121,6 @@ export class JobDetails extends Component {
           this.setState({
           selectedDevices: devices.map(({ deviceId }) => deviceEntities[deviceId])
         });
-
-        console.log("saki:jobDetails:Job_Click");
         this.props.logEvent(toDiagnosticsModel('Job_Click', {}));
       },
       t

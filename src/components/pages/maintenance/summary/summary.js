@@ -30,7 +30,6 @@ import './summary.scss';
 export class Summary extends Component {
 
   tabClickHandler = (tabName) => {
-    console.log("saki:summary:onTabClick:" + tabName);
     this.props.logEvent(toDiagnosticsModel(tabName + "_Click", {}));
   }
 

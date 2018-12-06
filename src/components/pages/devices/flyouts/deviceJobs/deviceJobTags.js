@@ -141,8 +141,7 @@ export class DeviceJobTags extends LinkedComponent {
         updatedTags: this.state.commonTags.filter(({ value }) => value !== tagJobConstants.multipleValues)
       });
 
-      console.log("saki:deviceJobTags:apply");
-      this.props.logEvent(toDiagnosticsModel('Devices_NewJob_Apply_Click', {}));
+      this.props.logEvent(toDiagnosticsModel('Devices_NewJobApply_Click', {}));
 
       const { devices } = this.props;
       const { commonTags, deletedTags } = this.state;

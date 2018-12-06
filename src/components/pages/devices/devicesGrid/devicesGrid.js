@@ -122,7 +122,6 @@ export class DevicesGrid extends Component {
    * Handles column move on a grid.
    */
   onColumnMoved = () => {
-    console.log("saki:devicesGrid:onColumnMoved:Devices_ColumnArranged");
     this.props.logEvent(toDiagnosticsModel('Devices_Column_Arranged', {}));
   }
 
@@ -130,7 +129,6 @@ export class DevicesGrid extends Component {
    * Handles sort change on a grid
    */
   onSortChanged = () => {
-    console.log("saki:devicesGrid:onSortChanged:Devices_SortClick");
     this.props.logEvent(toDiagnosticsModel('Devices_Sort_Click', {}));
   }
 

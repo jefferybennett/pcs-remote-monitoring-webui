@@ -108,8 +108,6 @@ export class RuleDetails extends Component {
     );
 
     this.handleProps(this.props);
-
-    console.log("saki:ruleDetails:componentDidMount:AlertDetails_Click");
     this.props.logEvent(toDiagnosticsModel('AlertDetails_Click', {}));
   }
 
@@ -185,21 +183,17 @@ export class RuleDetails extends Component {
           () => this.setState({ updatingAlertStatus: false })
         )
     )
-
-    console.log("saki:ruleDetail:deleteAlerts:AlertDelete_Click");
     this.props.logEvent(toDiagnosticsModel('AlertDelete_Click', {}));
   }
 
   // TODO: Move constant values to central location
   closeAlerts = () => {
     this.updateAlertStatus(this.state.selectedAlerts, Config.alertStatus.closed);
-    console.log("saki:ruleDetail:closeAlerts:AlertClose_Click");
     this.props.logEvent(toDiagnosticsModel('AlertClose_Click', {}));
   }
 
   ackAlerts = () => {
     this.updateAlertStatus(this.state.selectedAlerts, Config.alertStatus.acknowledged);
-    console.log("saki:ruleDetail:ackAlerts:AlertAcknowledge_Click");
     this.props.logEvent(toDiagnosticsModel('AlertAcknowledge_Click', {}));
   }
 
@@ -293,7 +287,6 @@ export class RuleDetails extends Component {
       onColumnMoved: this.props.onColumnMoved,
       onRowClicked: ({ node }) => {
         node.setSelected(!node.isSelected());
-        console.log("saki:ruleDetails:onHardSelectedChange:Alert_Click");
         this.props.logEvent(toDiagnosticsModel('Alert_Click', {}));
       },
       t,

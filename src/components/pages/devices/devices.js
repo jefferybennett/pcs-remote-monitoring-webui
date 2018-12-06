@@ -46,7 +46,6 @@ export class Devices extends Component {
   }
 
   componentDidMount() {
-    console.log("saki:devices:componentDidMount:DevicesPage_Click");
     this.props.logEvent(toDiagnosticsModel('DevicesPage_Click', {}));
   }
 
@@ -73,7 +72,6 @@ export class Devices extends Component {
    * Handles a click event on a device search.
    */
   searchOnClick = ({ target: { value } }) => {
-    console.log("saki:devices:searchOnClick:Devices_Search");
     this.props.logEvent(toDiagnosticsModel('Devices_Search', {}));
   };
 

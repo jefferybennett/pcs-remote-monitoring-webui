@@ -292,22 +292,20 @@ export class DeviceNew extends LinkedComponent {
   }
 
   deviceTypeChange = ({ target: { value } }) => {
-    this.props.logEvent(toSinglePropertyDiagnosticsModel('Devices_DeviceTypeSelect', 'DeviceType',
+    this.props.logEvent(toSinglePropertyDiagnosticsModel('Devices_DeviceType_Select', 'DeviceType',
       (value === 'true') ? Config.deviceType.simulated : Config.deviceType.physical));
     this.formControlChange();
   }
 
   onAuthenticationTypeChange = ({ target: { value } }) => {
-    console.log("saki:deviceNew:onAuthenticationTypeChange:" + value);
     this.formControlChange();
-    this.props.logEvent(toSinglePropertyDiagnosticsModel('Devices_AuthTypeSelect', 'AuthType',
+    this.props.logEvent(toSinglePropertyDiagnosticsModel('Devices_AuthType_Select', 'AuthType',
       (value === 0) ? Config.authenticationType.symmetricKey : Config.authenticationType.x509));
   }
 
   onAuthenticationKeyChange = ({ target: { value } }) => {
-    console.log("saki:deviceNew:onAuthenticationKeyChange:" + value);
     this.formControlChange();
-    this.props.logEvent(toSinglePropertyDiagnosticsModel('Devices_AuthKeySelect', 'AuthKey',
+    this.props.logEvent(toSinglePropertyDiagnosticsModel('Devices_AuthKey_Select', 'AuthKey',
       (value === 'true') ? Config.authenticationKey.autoKey : Config.authenticationKey.manualKey));
   }
 

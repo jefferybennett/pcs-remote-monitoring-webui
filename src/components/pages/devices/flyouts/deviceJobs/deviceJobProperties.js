@@ -177,9 +177,7 @@ export class DeviceJobProperties extends LinkedComponent {
     event.preventDefault();
     if (this.formIsValid()) {
       this.setState({ isPending: true });
-
-      console.log("saki:deviceJobProperties:apply");
-      this.props.logEvent(toDiagnosticsModel('Devices_NewJob_Apply_Click', {}));
+      this.props.logEvent(toDiagnosticsModel('Devices_NewJobApply_Click', {}));
 
       const { devices } = this.props;
       const { commonProperties, deletedProperties } = this.state;
