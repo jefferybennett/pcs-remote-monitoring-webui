@@ -97,8 +97,6 @@ export class DeviceJobMethods extends LinkedComponent {
     event.preventDefault();
     if (this.formIsValid()) {
       this.setState({ isPending: true });
-
-      console.log("saki:deviceJobMethods:apply");
       this.props.logEvent(toDiagnosticsModel('Devices_NewJobApply_Click', {}));
 
       const { devices } = this.props;

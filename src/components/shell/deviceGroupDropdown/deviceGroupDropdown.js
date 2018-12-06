@@ -14,8 +14,6 @@ export class DeviceGroupDropdown extends Component {
     if (deviceGroupIds.indexOf(value) > -1) {
       this.props.changeDeviceGroup(value);
     }
-
-    console.log("saki:deviceGroupDown:onChange:DeviceFilter_Select");
     this.props.logEvent(toDiagnosticsModel('DeviceFilter_Select', {}));
   }
 

@@ -71,7 +71,6 @@ export class Settings extends LinkedComponent {
   }
 
   componentDidMount() {
-    console.log("saki:settings:componentDidMount:SettingsFlyout_Open");
     this.props.logEvent(toDiagnosticsModel('SettingsFlyout_Open', {}));
   }
 
@@ -85,11 +84,10 @@ export class Settings extends LinkedComponent {
     const { name, value } = target;
     const etag = this.props.simulationEtag;
     this.setState({
-      toggledSimulation: true,
+      toggledSimulation: true, // Fix it, why is this always true?
       [name]: value
     },
     () => {
-      console.log("saki:settings:onSimulationChange:" + toggledSimulation);
       this.props.logEvent(toSinglePropertyDiagnosticsModel('Settings_SimulationToggle', 'isEnabled', toggledSimulation));
     });
     this.props.toggleSimulationStatus(etag, value);
@@ -97,12 +95,10 @@ export class Settings extends LinkedComponent {
 
   onThemeChange = (nextTheme) => {
     this.props.changeTheme(nextTheme);
-    console.log("saki:settings:onThemeChange:Settings_ThemeChanged");
     this.props.logEvent(toDiagnosticsModel('Settings_ThemeChanged', {}));
   }
 
   onFlyoutClose = (eventName) => {
-    console.log("saki:settings:onFlyoutClose:" + eventName);
     this.props.logEvent(toDiagnosticsModel(eventName, {}));
     this.props.onClose();
   }
@@ -113,7 +109,6 @@ export class Settings extends LinkedComponent {
       { diagnosticsOptIn: !diagnosticsOptIn },
       () => {
         this.props.updateDiagnosticsOptIn(!diagnosticsOptIn)
-        console.log("saki:settings:toggleDiagnostics:" + diagnosticsOptIn);
         this.props.logEvent(toSinglePropertyDiagnosticsModel('Settings_DiagnosticsToggle', 'isEnabled', diagnosticsOptIn));
       }
     );
@@ -143,14 +138,12 @@ export class Settings extends LinkedComponent {
     this.setState({
       logoFile: file
     });
-    console.log("saki:settings:onUpload:Settings_LogoUpdated");
     this.props.logEvent(toDiagnosticsModel('Settings_LogoUpdated', {}));
   };
 
   render() {
     const {
       t,
-      onClose,
       theme,
       version,
       releaseNotesUrl,

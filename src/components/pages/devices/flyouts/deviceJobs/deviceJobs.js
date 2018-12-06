@@ -45,13 +45,11 @@ export class DeviceJobs extends LinkedComponent {
   }
 
   componentDidMount() {
-    console.log("saki:deviceJobs:componentDidMount");
-    this.props.logEvent(toDiagnosticsModel('Devices_NewJobClick', {}));
+    this.props.logEvent(toDiagnosticsModel('Devices_NewJob_Click', {}));
   }
 
   onJobTypeChange = ({ target: { value } }) => {
-    console.log("saki:deviceJobs:onJobTypeChange:" + value);
-    this.props.logEvent(toSinglePropertyDiagnosticsModel('Devices_JobTypeSelect', 'JobType', value));
+    this.props.logEvent(toSinglePropertyDiagnosticsModel('Devices_JobType_Select', 'JobType', value));
   }
 
   formIsValid() {

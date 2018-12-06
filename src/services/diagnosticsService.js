@@ -9,6 +9,8 @@ export class DiagnosticsService {
 
   /** Posts an event */
   static logEvent(eventModel) {
+    console.log("saki:logEvent");
+    console.log(eventModel);
     return HttpClient.post(`${ENDPOINT}diagnosticsevents`, toDiagnosticsRequestModel(eventModel));
   }
 }
