@@ -188,13 +188,13 @@ export class RuleDetails extends Component {
 
   // TODO: Move constant values to central location
   closeAlerts = () => {
-    this.updateAlertStatus(this.state.selectedAlerts, Config.alertStatus.closed);
     this.props.logEvent(toDiagnosticsModel('AlertClose_Click', {}));
+    return this.updateAlertStatus(this.state.selectedAlerts, Config.alertStatus.closed);
   }
 
   ackAlerts = () => {
-    this.updateAlertStatus(this.state.selectedAlerts, Config.alertStatus.acknowledged);
     this.props.logEvent(toDiagnosticsModel('AlertAcknowledge_Click', {}));
+    return this.updateAlertStatus(this.state.selectedAlerts, Config.alertStatus.acknowledged);
   }
 
   setTab = selectedTab => () => this.setState({ selectedTab })
@@ -286,8 +286,8 @@ export class RuleDetails extends Component {
       onGridReady: this.onAlertGridReady,
       onColumnMoved: this.props.onColumnMoved,
       onRowClicked: ({ node }) => {
-        node.setSelected(!node.isSelected());
         this.props.logEvent(toDiagnosticsModel('Alert_Click', {}));
+        return node.setSelected(!node.isSelected());
       },
       t,
       deviceGroups

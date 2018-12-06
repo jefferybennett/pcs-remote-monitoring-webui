@@ -54,7 +54,7 @@ export class Devices extends Component {
   openSIMManagement = () => this.setState({ openFlyoutName: 'sim-management' });
   openNewDeviceFlyout = () => {
     this.setState({ openFlyoutName: 'new-device' });
-    this.props.logEvent(toDiagnosticsModel('Devices_NewClick', {}));
+    this.props.logEvent(toDiagnosticsModel('Devices_New_Click', {}));
   }
 
   onContextMenuChange = contextBtns => this.setState({
@@ -68,10 +68,7 @@ export class Devices extends Component {
     if (this.deviceGridApi) this.deviceGridApi.setQuickFilter(value);
   };
 
-  /**
-   * Handles a click event on a device search.
-   */
-  searchOnClick = ({ target: { value } }) => {
+  onSearchClick = () => {
     this.props.logEvent(toDiagnosticsModel('Devices_Search', {}));
   };
 
@@ -98,7 +95,7 @@ export class Devices extends Component {
             </Protected>
           </ContextMenuAlign>
           <ContextMenuAlign>
-            <SearchInput onChange={this.searchOnChange} onClick={this.searchOnClick} placeholder={t('devices.searchPlaceholder')} />
+            <SearchInput onChange={this.searchOnChange} onClick={this.onSearchClick} placeholder={t('devices.searchPlaceholder')} />
             {this.state.contextBtns}
             <Protected permission={permissions.updateSIMManagement}>
               <Btn svg={svgs.simmanagement} onClick={this.openSIMManagement}>{t('devices.flyouts.SIMManagement.title')}</Btn>

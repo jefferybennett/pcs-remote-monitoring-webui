@@ -118,16 +118,10 @@ export class DevicesGrid extends Component {
     }
   }
 
-  /**
-   * Handles column move on a grid.
-   */
   onColumnMoved = () => {
-    this.props.logEvent(toDiagnosticsModel('Devices_Column_Arranged', {}));
+    this.props.logEvent(toDiagnosticsModel('Devices_ColumnArranged', {}));
   }
 
-  /**
-   * Handles sort change on a grid
-   */
   onSortChanged = () => {
     this.props.logEvent(toDiagnosticsModel('Devices_Sort_Click', {}));
   }

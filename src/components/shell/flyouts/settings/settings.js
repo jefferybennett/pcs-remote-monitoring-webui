@@ -84,7 +84,7 @@ export class Settings extends LinkedComponent {
     const { name, value } = target;
     const etag = this.props.simulationEtag;
     this.setState({
-      toggledSimulation: true, // Fix it, why is this always true?
+      toggledSimulation: true,
       [name]: value
     },
     () => {
@@ -94,23 +94,20 @@ export class Settings extends LinkedComponent {
   }
 
   onThemeChange = (nextTheme) => {
-    this.props.changeTheme(nextTheme);
     this.props.logEvent(toDiagnosticsModel('Settings_ThemeChanged', {}));
+    return this.props.changeTheme(nextTheme);
   }
 
   onFlyoutClose = (eventName) => {
     this.props.logEvent(toDiagnosticsModel(eventName, {}));
-    this.props.onClose();
+    return this.props.onClose();
   }
 
   toggleDiagnostics = () => {
     const { diagnosticsOptIn } = this.state;
     this.setState(
       { diagnosticsOptIn: !diagnosticsOptIn },
-      () => {
-        this.props.updateDiagnosticsOptIn(!diagnosticsOptIn)
-        this.props.logEvent(toSinglePropertyDiagnosticsModel('Settings_DiagnosticsToggle', 'isEnabled', diagnosticsOptIn));
-      }
+      () => this.props.updateDiagnosticsOptIn(!diagnosticsOptIn)
     );
   }
 
@@ -178,7 +175,7 @@ export class Settings extends LinkedComponent {
         <Flyout.Container>
           <Flyout.Header>
             <Flyout.Title>{t('settingsFlyout.title')}</Flyout.Title>
-            <Flyout.CloseBtn onClick={this.onFlyoutClose.bind(this, 'Settings_TopXCloseClick')} />
+            <Flyout.CloseBtn onClick={this.onFlyoutClose.bind(this, 'Settings_TopXClose_Click')} />
           </Flyout.Header>
           <Flyout.Content className="settings-workflow-container">
             <Section.Container collapsable={false}>
@@ -263,9 +260,9 @@ export class Settings extends LinkedComponent {
             <div className="btn-container">
               {
                 !loading && hasChanged &&
-                <Btn type="submit" onClick={this.onFlyoutClose.bind(this, 'Settings_ApplyClick')} className="apply-button">{t('settingsFlyout.apply')}</Btn>
+                <Btn type="submit" onClick={this.onFlyoutClose.bind(this, 'Settings_Apply_Click')} className="apply-button">{t('settingsFlyout.apply')}</Btn>
               }
-              <Btn svg={svgs.x} onClick={this.onFlyoutClose.bind(this, 'Settings_CloseClick')} className="close-button">
+              <Btn svg={svgs.x} onClick={this.onFlyoutClose.bind(this, 'Settings_Close_Click')} className="close-button">
                 {hasChanged ? t('settingsFlyout.cancel') : t('settingsFlyout.close')}</Btn>
               {loading && <Indicator size='small' />}
             </div>
