@@ -125,16 +125,16 @@ class DeviceGroupForm extends LinkedComponent {
 
   addCondition = () => {
     this.props.logEvent(toDiagnosticsModel('DeviceGroup_AddCondition', {}));
-    this.conditionsLink.set([
-    ...this.conditionsLink.value,
-    newCondition()
+    return this.conditionsLink.set([
+      ...this.conditionsLink.value,
+      newCondition()
     ]);
   }
 
   deleteCondition = (index) =>
     () => {
       this.props.logEvent(toDiagnosticsModel('DeviceGroup_RemoveCondition', {}));
-      this.conditionsLink.set(this.conditionsLink.value.filter((_, idx) => index !== idx));
+      return this.conditionsLink.set(this.conditionsLink.value.filter((_, idx) => index !== idx));
     }
 
   deleteDeviceGroup = () => {

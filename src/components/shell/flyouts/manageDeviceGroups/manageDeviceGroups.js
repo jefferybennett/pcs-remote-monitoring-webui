@@ -59,9 +59,7 @@ export class ManageDeviceGroups extends LinkedComponent {
 
   onEditDeviceGroup = selectedDeviceGroup => () => {
     this.props.logEvent(toDiagnosticsModel('DeviceGroup_EditClick', {}));
-    this.setState({
-      selectedDeviceGroup
-    });
+    this.setState({ selectedDeviceGroup });
   }
 
   onCloseFlyout = () => {

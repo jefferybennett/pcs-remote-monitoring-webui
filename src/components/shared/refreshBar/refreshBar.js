@@ -13,7 +13,7 @@ export class RefreshBar extends Component {
 
   refresh = () => {
     this.props.logEvent(toDiagnosticsModel('Refresh_Clicked', {}));
-    !this.props.isPending && this.props.refresh();
+    return !this.props.isPending && this.props.refresh();
   }
 
   render () {

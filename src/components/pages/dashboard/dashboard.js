@@ -403,7 +403,7 @@ export class Dashboard extends Component {
                   isPending={devicesIsPending || analyticsIsPending}
                   error={azureMapsKeyError || devicesError || analyticsError}
                   t={t}
-                  logEvent = {logEvent} />
+                  logEvent={logEvent} />
               </PanelErrorBoundary>
             </Cell>
             <Cell className="col-3">
@@ -413,7 +413,7 @@ export class Dashboard extends Component {
                 error={rulesError || analyticsError}
                 t={t}
                 deviceGroups={deviceGroups}
-                logEvent = {logEvent} />
+                logEvent={logEvent} />
             </Cell>
             <Cell className="col-6">
               <TelemetryPanel
