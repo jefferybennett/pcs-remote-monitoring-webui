@@ -269,7 +269,7 @@ export class DeviceNew extends LinkedComponent {
   }
 
   deviceChange = ({ target: { value } }) => {
-    this.props.logEvent(toSinglePropertyDiagnosticsModel('Devices_DeviceSelect', 'Device',
+    this.props.logEvent(toSinglePropertyDiagnosticsModel('Devices_Device_Select', 'Device',
       (value === 'true') ? Config.device.edgeDevice : Config.device.device));
     if (value === 'true') {
       this.setState({
@@ -333,7 +333,7 @@ export class DeviceNew extends LinkedComponent {
 
       if (this.provisionSubscription) this.provisionSubscription.unsubscribe();
 
-      this.props.logEvent(toDeviceDiagnosticsModel('Devices_ApplyClick', formData));
+      this.props.logEvent(toDeviceDiagnosticsModel('Devices_Apply_Click', formData));
 
       if (this.state.formData.isSimulated) {
         this.provisionSubscription = DeviceSimulationService.incrementSimulatedDeviceModel(formData.deviceModel, formData.count)
@@ -408,7 +408,7 @@ export class DeviceNew extends LinkedComponent {
       <Flyout>
         <FlyoutHeader>
           <FlyoutTitle>{t('devices.flyouts.new.title')}</FlyoutTitle>
-          <FlyoutCloseBtn onClick={() => this.onFlyoutClose('Devices_TopXCloseClick')} />
+          <FlyoutCloseBtn onClick={() => this.onFlyoutClose('Devices_TopXClose_Click')} />
         </FlyoutHeader>
         <FlyoutContent>
           <Protected permission={permissions.createDevices}>
@@ -515,7 +515,7 @@ export class DeviceNew extends LinkedComponent {
                 !changesApplied &&
                 <BtnToolbar>
                   <Btn primary={true} disabled={isPending || !this.formIsValid()} type="submit">{t('devices.flyouts.new.apply')}</Btn>
-                  <Btn svg={svgs.cancelX} onClick={() => this.onFlyoutClose('Devices_CancelClick')}>{t('devices.flyouts.new.cancel')}</Btn>
+                  <Btn svg={svgs.cancelX} onClick={() => this.onFlyoutClose('Devices_Cancel_Click')}>{t('devices.flyouts.new.cancel')}</Btn>
                 </BtnToolbar>
               }
               {
@@ -523,7 +523,7 @@ export class DeviceNew extends LinkedComponent {
                 <ComponentArray>
                   <ProvisionedDevice device={provisionedDevice} t={t} />
                   <BtnToolbar>
-                    <Btn svg={svgs.cancelX} onClick={() => this.onFlyoutClose('Devices_CloseClick')}>{t('devices.flyouts.new.close')}</Btn>
+                    <Btn svg={svgs.cancelX} onClick={() => this.onFlyoutClose('Devices_Close_Click')}>{t('devices.flyouts.new.close')}</Btn>
                   </BtnToolbar>
                 </ComponentArray>
               }

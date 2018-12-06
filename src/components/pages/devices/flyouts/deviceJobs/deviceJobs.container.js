@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { DeviceJobs } from './deviceJobs';
 import { redux as devicesRedux } from 'store/reducers/devicesReducer';
-import {
-  epics as appEpics,
-} from 'store/reducers/appReducer';
+import { epics as appEpics} from 'store/reducers/appReducer';
 
 // Wrap the dispatch method
 const mapDispatchToProps = dispatch => ({

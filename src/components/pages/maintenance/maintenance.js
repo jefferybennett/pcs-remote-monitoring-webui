@@ -184,8 +184,8 @@ export class Maintenance extends Component {
   };
 
   onTimeIntervalChange = (timeInterval) => {
-    this.props.updateTimeInterval(timeInterval);
-    this.props.logEvent(toDiagnosticsModel('TimeFilter_Selected', {}));
+    this.props.logEvent(toDiagnosticsModel('TimeFilter_Select', {}));
+    return this.props.updateTimeInterval(timeInterval);
   }
 
   onColumnMoved = (eventName) => {
