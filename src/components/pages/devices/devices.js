@@ -45,10 +45,6 @@ export class Devices extends Component {
     }
   }
 
-  componentDidMount() {
-    this.props.logEvent(toDiagnosticsModel('DevicesPage_Click', {}));
-  }
-
   closeFlyout = () => this.setState(closedFlyoutState);
 
   openSIMManagement = () => this.setState({ openFlyoutName: 'sim-management' });

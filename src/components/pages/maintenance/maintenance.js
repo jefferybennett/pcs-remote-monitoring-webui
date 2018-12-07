@@ -151,7 +151,6 @@ export class Maintenance extends Component {
     if (!devicesIsPending && deviceLastUpdated) {
       this.getData(deviceEntities);
     }
-    this.props.logEvent(toDiagnosticsModel('MaintenancePage_Click', {}));
   }
 
   componentWillReceiveProps(nextProps) {
