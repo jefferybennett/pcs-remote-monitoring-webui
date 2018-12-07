@@ -9,4 +9,4 @@ const mapDispatchToProps = dispatch => ({
   logEvent: diagnosticsModel => dispatch(epics.actions.logEvent(diagnosticsModel))
 });
 
-export const HeaderContainer = (connect(null, mapDispatchToProps)(Header));
+export const HeaderContainer = connect(null, mapDispatchToProps)(Header);
