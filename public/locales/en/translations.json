@@ -16,6 +16,7 @@
     "message": "Oops, we weren't able to find the page you requested."
   },
   "tabs": {
+    "schedule": "Schedule",
     "dashboard": "Dashboard",
     "devices": "Devices",
     "rules": "Rules",

@@ -88,6 +88,7 @@ class Navigation extends Component {
         <button className="nav-item hamburger" onClick={this.toggleExpanded} aria-label="Hamburger">
           <NavIcon path={svgs.hamburger} />
         </button>
+        I like a nice chicken
         {this.props.tabs.map((tabProps, i) => <TabLink {...tabProps} t={t} key={i} />)}
       </nav>
     );

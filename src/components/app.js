@@ -7,7 +7,9 @@ import { svgs } from 'utilities';
 import { Protected } from 'components/shared';
 import Shell from "components/shell/shell";
 import { ManageDeviceGroupsContainer, SettingsContainer, ProfileContainer } from 'components/shell/flyouts';
+// JRB
 import {
+  ScheduleContainer,
   DashboardContainer,
   DevicesContainer,
   RulesContainer,
@@ -34,7 +36,15 @@ class App extends Component {
     const { deviceGroupFlyoutIsOpen } = this.props;
     const { openFlyout } = this.state;
 
+    // JRB
     const pagesConfig = [
+      {
+        to: '/schedule',
+        exact: true,
+        svg: svgs.tabs.dashboard,
+        labelId: 'tabs.schedule',
+        component: ScheduleContainer
+      },
       {
         to: '/dashboard',
         exact: true,
@@ -79,7 +89,13 @@ class App extends Component {
       }
     ];
 
+    // JRB
     const crumbsConfig = [
+      {
+        path: '/schedule', crumbs: [
+          { to: '/schedule', labelId: 'tabs.schedule' }
+        ]
+      },
       {
         path: '/dashboard', crumbs: [
           { to: '/dashboard', labelId: 'tabs.dashboard' }
